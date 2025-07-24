@@ -1,0 +1,9 @@
+opencv-python
+mediapipe
+cvzone
+numpy
+pyautogui
+autopy
+comtypes
+pycaw
+directkeys
