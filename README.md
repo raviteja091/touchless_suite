@@ -1,5 +1,3 @@
-**README**
-
 Welcome to the Touchless Interaction Suite: a multi-module collection of Python/Arduino projects that transform everyday webcams and a single gesture-sensor into powerful-computer-interaction (HCI) tools.  
 This README acts as a single, authoritative reference for:
 
