@@ -1,3 +1,5 @@
+# Hand gestures Control
+
 Welcome to the Touchless Interaction Suite: a multi-module collection of Python/Arduino projects that transform everyday webcams and a single gesture-sensor into powerful-computer-interaction (HCI) tools.  
 This README acts as a single, authoritative reference for:
 
@@ -6,7 +8,7 @@ This README acts as a single, authoritative reference for:
 *   Detailed explanations of each module’s purpose, architecture, and usage.
 *   Troubleshooting tips and extensibility guidance.
 
-**Overview**
+## Overview
 
 The suite ships six independent Python applications (plus one Arduino sketch):
 
@@ -20,9 +22,9 @@ The suite ships six independent Python applications (plus one Arduino sketch):
 
 Each program relies on real-time hand-landmark extraction by **MediaPipe Hands** and/or raw gesture decoding from the **APDS-9960** sensor. Output actions are injected via **pyautogui**, **autopy**, or Windows Core Audio (pycaw) where appropriate.
 
-**Quick-Start Installation**
+## Quick-Start Installation
 
-**1\. Python Environment**
+### 1\. Python Environment
 
 | Item | Min Version | Tested On | Notes |
 | --- | --- | --- | --- |
@@ -31,7 +33,7 @@ Each program relies on real-time hand-landmark extraction by **MediaPipe Hands**
 
 ⚠️ If you already run Python 3.9+ and wish to avoid Rust toolchain compilation, install a parallel 3.8 interpreter exclusively for this suite; point your IDE or virtualenv to that interpreter before proceeding[\[1\]](#fn1).
 
-**2\. System Packages**
+### 2\. System Packages
 
 Windows users must install the **Visual C++ Build Tools** to satisfy pycaw prerequisites:
 
@@ -43,7 +45,7 @@ sudo apt-get install scrot python3-tk python3-dev # display capture & Tk binding
 
 macOS users may need the **command-line developer tools** (xcode-select --install).
 
-**3\. Python Dependencies**
+### 3\. Python Dependencies
 
 Create and activate a new virtual environment, then install the libraries:
 
@@ -59,7 +61,7 @@ rustup default nightly-2019-10-05
 pip install setuptools-rust  
 pip install autopy  
 
-**4\. Hardware**
+### 4\. Hardware
 
 | Module | Mandatory Hardware | Optional |
 | --- | --- | --- |
@@ -67,7 +69,7 @@ pip install autopy
 | Scroll/Volume Controller | Speakers/headphones (for feedback) | — |
 | Arduino driver | Arduino Nano/Uno + APDS-9960 breakout | On-board LED for testing |
 
-**Repository Structure**
+## Repository Structure
 
 .  
 ├─ Presentation/  
@@ -82,7 +84,7 @@ pip install autopy
 ├─ arduino\_apds.ino # Module #7  
 └─ README.md # ← current file  
 
-**1\. Presentation Controller**
+### 1\. Presentation Controller
 
 **Purpose**
 
@@ -112,7 +114,7 @@ Edit the constants at the top of presentation.py:
 *   gestureThreshold: vertical pixel threshold above which slide-nav gestures register.
 *   delay: debounce frames between commands.
 
-**2\. Virtual Mouse**
+### 2\. Virtual Mouse
 
 **Purpose**
 
@@ -132,7 +134,7 @@ python virtual\_mouse.py
 Tune variables:  
 frameR (dead-zone size), smoothening (cursor easing), camera index (cap = cv2.VideoCapture(x)).
 
-**3\. Volume / Scroll / Cursor Controller**
+### 3\. Volume / Scroll / Cursor Controller
 
 **Purpose**
 
@@ -167,7 +169,7 @@ python volume\_scroll.py
 
 Requires **pycaw** (Windows only). On Linux/macOS, comment out the AudioUtilities section to compile without sound control.
 
-**4\. Dino Game Controller**
+### 4\. Dino Game Controller 
 
 **Purpose**
 
@@ -184,7 +186,7 @@ directkeys.py must expose PressKey/ReleaseKey and scancode for SPACE.
 
 python dino\_game.py  
 
-**5\. Hill Climb Racing Controller**
+### 5\. Hill Climb Racing Controller
 
 **Purpose**
 
@@ -201,7 +203,7 @@ python hill\_climb.py
 
 Ensure directkeys values left\_pressed/right\_pressed match the game’s keybindings.
 
-**6\. 3D Racing Game Controller**
+### 6\. 3D Racing Game Controller
 
 **Purpose**
 
@@ -268,7 +270,7 @@ Upload via the Arduino IDE, open Serial Monitor to verify events.
 
 Increase smoothening > 7 to minimise tremors; values > 15 impair responsiveness.
 
-**Troubleshooting**
+## Troubleshooting
 
 | Symptom | Likely Cause | Resolution |
 | --- | --- | --- |
@@ -285,25 +287,13 @@ Increase smoothening > 7 to minimise tremors; values > 15 impair responsiveness.
 3.  **Cross-Platform Audio** – swap pycaw for alsaaudio (Linux) or pyobjc-core (macOS) to unify volume control.
 4.  **Modular Framework** – refactor repetitive hand-tracking code into a shared gesture\_engine.py.
 
-**Contribution Guidelines**
-
-*   Fork the repo ➜ create feature branch ➜ submit pull request.
-*   Adhere to **PEP 8** style; run flake8 before committing.
-*   Document new gestures thoroughly in this README and code comments.
-*   Hardware-specific changes must include fallback stubs for other OSes.
-
-**License**
-
-All original source files are released under the MIT License.  
-Third-party libraries maintain their own licenses (Apache-2.0 for MediaPipe, MIT for cvzone, GPL-compatible for pyautogui, etc.).
-
-**Acknowledgements**
+## Acknowledgements
 
 *   **Murtaza Hassan’s CVZone** for simplified MediaPipe wrappers and concise tutorials[\[10\]](#fn10)[\[11\]](#fn11).
 *   Google Research for the _MediaPipe Hands_ landmark network[\[12\]](#fn12).
 *   Community contributors on StackOverflow, PyPI, and Reddit for installation insights[\[8\]](#fn8)[\[13\]](#fn13)[\[14\]](#fn14)[\[7\]](#fn7).
 
-**End-to-End Test Checklist**
+## End-to-End Test Checklist
 
 1.  Run python presentation/presentation.py → navigate slides left/right.
 2.  Run python virtual\_mouse.py → move cursor, perform click gesture.
